@@ -1,0 +1,1 @@
+A 3-component app for scoring a round of golf, bootstrapped with [Create React App]
