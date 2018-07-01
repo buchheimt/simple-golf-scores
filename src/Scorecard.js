@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-import { scorecard, scorecardHeader, courseName, scorecardRow, holesContainer, holeColumn, holeRow, parRow, yardageRow, scoreCell, highlightedHoleCol } from './styles';
+import { scorecard, scorecardHeader, courseName, scorecardRow, holesContainer, holeColumn, holeRow, parRow, yardageRow, scoreCell, highlightedHoleCol, nameInput, summaryCell, summaryYardage } from './styles';
 
 const rowConfig = [
   {value: 1, label: 'Blue'},
@@ -36,7 +36,11 @@ class Scorecard extends Component {
     super(props);
 
     this.state = {
-      selectedHole: 1
+      selectedHole: 1,
+      player1: '',
+      player2: '',
+      player3: '',
+      player4: ''
     }
   }
 
@@ -45,11 +49,19 @@ class Scorecard extends Component {
       <div className={holeRow}>Hole</div>
       <p className={yardageRow}>Yardage</p>
       <p className={parRow}>Par</p>
-      <p className={scoreCell}>Player 1</p>
-      <p className={scoreCell}>Player 2</p>
+      <input className={nameInput} placeholder='Player 1' value={this.state.player1} onChange={(e) => this.setState({
+        player1: e.target.value
+      })} />
+      <input className={nameInput} placeholder='Player 2' value={this.state.player2} onChange={(e) => this.setState({
+        player2: e.target.value
+      })} />
       <p className={parRow}>Rank</p>
-      <p className={scoreCell}>Player 3</p>
-      <p className={scoreCell}>Player 4</p>
+      <input className={nameInput} placeholder='Player 3' value={this.state.player3} onChange={(e) => this.setState({
+        player3: e.target.value
+      })} />
+      <input className={nameInput} placeholder='Player 4' value={this.state.player4} onChange={(e) => this.setState({
+        player4: e.target.value
+      })} />
       <p className={parRow}>Par</p>
     </div>
   );
@@ -85,13 +97,13 @@ class Scorecard extends Component {
   renderSummary = holes => (
     <div className={holeColumn}>
       <p className={holeRow}>OUT</p>
-      <p className={yardageRow}>{holes.reduce((sum, hole) => sum + hole.yardage, 0)}</p>
+      <p className={summaryYardage}>{holes.reduce((sum, hole) => sum + hole.yardage, 0)}</p>
       <p className={parRow}>{holes.reduce((sum, hole) => sum + hole.par, 0)}</p>
-      <p className={scoreCell}>3</p>
-      <p className={scoreCell}>3</p>
+      <p className={summaryCell}>3</p>
+      <p className={summaryCell}>3</p>
       <p className={parRow}>{"-"}</p>
-      <p className={scoreCell}>3</p>
-      <p className={scoreCell}>3</p>
+      <p className={summaryCell}>3</p>
+      <p className={summaryCell}>3</p>
       <p className={parRow}>{holes.reduce((sum, hole) => sum + hole.par, 0)}</p>
     </div>
   );
@@ -99,13 +111,13 @@ class Scorecard extends Component {
   renderTotals = () => (
     <div className={holeColumn}>
       <div className={holeRow}>TOT</div>
-      <p className={yardageRow}>{holes.reduce((sum, hole) => sum + hole.yardage, 0)}</p>
+      <p className={summaryYardage}>{holes.reduce((sum, hole) => sum + hole.yardage, 0)}</p>
       <p className={parRow}>{holes.reduce((sum, hole) => sum + hole.par, 0)}</p>
-      <p className={scoreCell}>3</p>
-      <p className={scoreCell}>3</p>
+      <p className={summaryCell}>3</p>
+      <p className={summaryCell}>3</p>
       <p className={parRow}>{"-"}</p>
-      <p className={scoreCell}>3</p>
-      <p className={scoreCell}>3</p>
+      <p className={summaryCell}>3</p>
+      <p className={summaryCell}>3</p>
       <p className={parRow}>{holes.reduce((sum, hole) => sum + hole.par, 0)}</p>
     </div>
   )
@@ -116,6 +128,7 @@ class Scorecard extends Component {
         <div className={scorecardHeader} >
           <h1 className={courseName}>Green Crest GC</h1>
         </div>
+        {console.log(this.state)}
         <div className={holesContainer} >
           {this.renderLabels()}
           {this.renderNine(holes.slice(0, 9))}

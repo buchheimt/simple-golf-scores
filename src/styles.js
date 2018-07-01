@@ -57,6 +57,7 @@ export const holeColumn = css`
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const highlightedHoleCol = css`
@@ -64,6 +65,7 @@ export const highlightedHoleCol = css`
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
 `
 
 export const yardageRow = css`
@@ -77,4 +79,39 @@ export const scoreCell = css`
   display: flex;
   justify-content: center;
   align-items: center;
+`
+
+export const summaryCell = css`
+  border-top: 1px solid #444;
+  padding: 4px 2px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #aab2a5;
+`
+
+export const summaryYardage = css`
+  padding: 4px 2px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #aab2a5;
+`
+
+export const nameInput = css`
+  border-top: 1px solid #444;
+  padding: 4px 2px;
+  width: 150px;
+  background: ${COLORS.light};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-top: 1px solid #444;
+
+  :focus {
+    background-color: #aab2a5;
+  }
 `
