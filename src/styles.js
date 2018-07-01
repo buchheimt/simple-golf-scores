@@ -8,11 +8,25 @@ const COLORS = {
   dark: '#2f3e46'
 }
 
+export const overlay = css`
+  width: 100%;
+  height: 100%;
+  background-color: rgba(50, 50, 50, .7);
+  padding: 0 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 export const scorecard = css`
   display: inline-block;
-  margin: 50px auto 0;
+  margin: 0 auto;
   box-shadow: 1px 3px 3px 3px #222;
   background-color: ${COLORS.light};
+  min-width: 942.5px;
+  min-height: 367px;
+  display: flex;
+  flex-direction: column;
 `;
   
 export const scorecardHeader = css`
@@ -120,5 +134,30 @@ export const noteModal = css`
   position: absolute;
   width: 100%;
   height: 100%;
-  background: pink;
+  background-color: rgba(50, 50, 50, .75);
+`
+
+export const backsideWrapper = css`
+  display: flex;
+  flex-grow: 1;
+`
+
+export const infoCol = css`
+  display: inline-block;
+  width: 40%;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+`
+
+export const inputCol = css`
+  display: inline-block;
+  width: 40%;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  padding: 24px;
 `

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
 import Scorecard from './Scorecard';
-import NoteModal from './NoteModal';
+import Backside from './Backside';
+
+import { overlay, scorecard, scorecardHeader, courseName } from './styles';
 
 // import './App.css';
 
@@ -10,17 +12,21 @@ class App extends Component {
     super(props)
 
     this.state = {
-      noteModalId: null
+      backsideNum: null
     }
   }
 
-  setNoteModal = noteModalId => this.setState({ noteModalId })
+  setNoteModal = backsideNum => this.setState({ backsideNum })
 
   render() {
     return (
-      <div>
-        {this.state.noteModalId && <NoteModal num={this.state.noteModalId} />}
-        <Scorecard onNoteClick={this.setNoteModal} />
+      <div className={overlay}>        
+        <div className={scorecard}>
+          <div className={scorecardHeader} >
+            <h1 className={courseName}>Green Crest GC</h1>
+          </div>
+          {this.state.backsideNum ? <Backside num={this.state.backsideNum} /> : <Scorecard onNoteClick={this.setNoteModal} />}
+        </div>
       </div>
     );
   }

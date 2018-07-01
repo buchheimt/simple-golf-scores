@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-import { scorecard, scorecardHeader, courseName, scorecardRow, holesContainer, holeColumn, holeRow, parRow, yardageRow, scoreCell, highlightedHoleCol, nameInput, summaryCell, summaryYardage } from './styles';
+import { scorecard, scorecardRow, holesContainer, holeColumn, holeRow, parRow, yardageRow, scoreCell, highlightedHoleCol, nameInput, summaryCell, summaryYardage } from './styles';
 
 const rowConfig = [
   {value: 1, label: 'Blue'},
@@ -107,7 +107,7 @@ class Scorecard extends Component {
       <p className={summaryCell}>3</p>
       <p className={summaryCell}>3</p>
       <p className={parRow}>{holes.reduce((sum, hole) => sum + hole.par, 0)}</p>
-      <p className={scoreCell}></p>
+      <p className={summaryCell}>-</p>
     </div>
   );
 
@@ -122,16 +122,13 @@ class Scorecard extends Component {
       <p className={summaryCell}>3</p>
       <p className={summaryCell}>3</p>
       <p className={parRow}>{holes.reduce((sum, hole) => sum + hole.par, 0)}</p>
-      <p className={scoreCell}></p>
+      <p className={summaryCell}>-</p>
     </div>
   )
 
   render() {
     return (
-      <div className={scorecard}>
-        <div className={scorecardHeader} >
-          <h1 className={courseName}>Green Crest GC</h1>
-        </div>
+      <Fragment>
         {console.log(this.state)}
         <div className={holesContainer} >
           {this.renderLabels()}
@@ -139,7 +136,7 @@ class Scorecard extends Component {
           {this.renderNine(holes.slice(9))}
           {this.renderTotals()}
         </div>
-      </div>
+      </Fragment>
     )
   }
 }
