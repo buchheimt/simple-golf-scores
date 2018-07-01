@@ -11,7 +11,7 @@ const COLORS = {
 export const scorecard = css`
   display: inline-block;
   margin: 50px auto 0;
-  box-shadow: 1px 3px 3px 3px #444;
+  box-shadow: 1px 3px 3px 3px #222;
   background-color: ${COLORS.light};
 `;
   
@@ -58,6 +58,13 @@ export const holeColumn = css`
   flex-direction: column;
   align-items: center;
 `;
+
+export const highlightedHoleCol = css`
+  border: 1px solid yellow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 
 export const yardageRow = css`
   padding: 4px;
