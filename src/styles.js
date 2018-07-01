@@ -11,10 +11,8 @@ const COLORS = {
 export const scorecard = css`
   display: inline-block;
   margin: 50px auto 0;
-  height: 400px;
   box-shadow: 1px 3px 3px 3px #444;
   background-color: ${COLORS.light};
-  border-radius: 5px;
 `;
   
 export const scorecardHeader = css`
@@ -23,8 +21,6 @@ export const scorecardHeader = css`
   align-items: center;
   background-color: ${COLORS.light_medium};
   padding: 15px 0;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
 `;
 
 export const holeRow = css`
@@ -44,21 +40,34 @@ export const parRow = css`
   align-items: center;
   padding: 8px 4px;
   width: 100%;
-`
+  color: white;
+`;
 
 export const courseName = css`
-  font-size: 16px;
+  font-size: 24px;
   color: white;
 `;
 
 export const holesContainer = css`
   display: flex;
-  border: 1px solid orange;
-`
+`;
 
 export const holeColumn = css`
-  border: 1px solid red;
+  border: 1px solid #444;
   display: flex;
   flex-direction: column;
+  align-items: center;
+`;
+
+export const yardageRow = css`
+  padding: 4px;
+`;
+
+export const scoreCell = css`
+  border-top: 1px solid #444;
+  padding: 4px 2px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   align-items: center;
 `
