@@ -63,6 +63,7 @@ class Scorecard extends Component {
         player4: e.target.value
       })} />
       <p className={parRow}>Par</p>
+      <p className={scoreCell}>Notes</p>
     </div>
   );
 
@@ -90,6 +91,7 @@ class Scorecard extends Component {
         <p className={scoreCell}>3</p>
         <p className={scoreCell}>3</p>
         <p className={parRow}>{hole.par}</p>
+        <p className={scoreCell} onClick={() => this.props.onNoteClick(hole.num)}>...</p>
       </div>
     )
   );
@@ -105,6 +107,7 @@ class Scorecard extends Component {
       <p className={summaryCell}>3</p>
       <p className={summaryCell}>3</p>
       <p className={parRow}>{holes.reduce((sum, hole) => sum + hole.par, 0)}</p>
+      <p className={scoreCell}></p>
     </div>
   );
 
@@ -119,6 +122,7 @@ class Scorecard extends Component {
       <p className={summaryCell}>3</p>
       <p className={summaryCell}>3</p>
       <p className={parRow}>{holes.reduce((sum, hole) => sum + hole.par, 0)}</p>
+      <p className={scoreCell}></p>
     </div>
   )
 

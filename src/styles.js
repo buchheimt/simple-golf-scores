@@ -115,3 +115,10 @@ export const nameInput = css`
     background-color: #aab2a5;
   }
 `
+
+export const noteModal = css`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: pink;
+`
