@@ -8,5 +8,10 @@
 }
 
 html {
-  background-color: #cad2c5;
+  background-color: #2f3e46;
+}
+
+body {
+  display: flex;
+  justify-content: center;
 }
