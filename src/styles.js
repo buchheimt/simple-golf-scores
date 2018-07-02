@@ -105,10 +105,6 @@ export const scoreCell = css`
   height: 36px;
   cursor: pointer;
   text-align: center;
-
-  :focus {
-    background-color: #aab2a5;
-  }
 `
 
 export const summaryCell = css`

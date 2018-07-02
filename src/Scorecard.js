@@ -25,6 +25,8 @@ class Scorecard extends Component {
   }
 
   calculateColor = (score, par) => {
+    if (!score) return "#cad2c5";
+
     switch(true) {
       case score - par >= 2:
         return "rgba(238, 90, 0, 0.65)";
@@ -70,7 +72,7 @@ class Scorecard extends Component {
   );
 
   renderHoles = holes => 
-    holes.map(hole => (
+    holes.map((hole, holeIdx) => (
       <div 
         className={this.state.selectedHole === hole.num ? highlightedHoleCol : holeColumn}
         onClick={() => this.setState({
@@ -80,11 +82,31 @@ class Scorecard extends Component {
         <div className={holeRow}>{hole.num}</div>
         <p className={yardageRow}>{hole.yardage}</p>
         <p className={parRow}>{hole.par}</p>
-        <input className={css`${scoreCell}; background-color: ${this.calculateColor(3, 5)}`} maxLength="1" />
-        <input className={css`${scoreCell}; background-color: ${this.calculateColor(6, 5)}`} maxLength="1" />
+        <input 
+          className={css`${scoreCell}; background-color: ${this.calculateColor(hole.player1, hole.par)}`} 
+          maxLength="1"
+          value={hole.player1}
+          onChange={e => this.props.handleScoreChange({holeIdx, player: 'player1', score: e.target.value})}
+          />
+        <input 
+          className={css`${scoreCell}; background-color: ${this.calculateColor(hole.player2, hole.par)}`} 
+          maxLength="1"
+          value={hole.player2}
+          onChange={e => this.props.handleScoreChange({holeIdx, player: 'player2', score: e.target.value})}
+          />
         <p className={parRow}>{hole.rank}</p>
-        <input className={css`${scoreCell}; background-color: ${this.calculateColor(8, 5)}`} maxLength="1" />
-        <input className={css`${scoreCell}; background-color: ${this.calculateColor(4, 5)}`} maxLength="1" />
+        <input 
+          className={css`${scoreCell}; background-color: ${this.calculateColor(hole.player3, hole.par)}`} 
+          maxLength="1"
+          value={hole.player3}
+          onChange={e => this.props.handleScoreChange({holeIdx, player: 'player3', score: e.target.value})}
+          />
+        <input 
+          className={css`${scoreCell}; background-color: ${this.calculateColor(hole.player4, hole.par)}`} 
+          maxLength="1"
+          value={hole.player4}
+          onChange={e => this.props.handleScoreChange({holeIdx, player: 'player4', score: e.target.value})}
+          />
         <p className={parRow}>{hole.par}</p>
         <p className={noteCell} onClick={() => this.props.onNoteClick(hole.num)}></p>
       </div>

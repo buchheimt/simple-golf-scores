@@ -5,7 +5,7 @@ import { noteModal, infoCol, inputCol, backsideWrapper, notes, notesLabel } from
 class Backside extends Component {
 
   render() {
-    const { num, yardage, par, rank } = this.props.hole;
+    const { num, yardage, par, rank, player1, player2, player3, player4 } = this.props.hole;
 
     return (
       <div className={backsideWrapper}>
@@ -14,10 +14,10 @@ class Backside extends Component {
           <p>Hole {num}</p>
           <p>Yardage: {yardage}</p>
           <p>Par: {par}</p>
-          <p>Player 1</p>
-          <p>Player 2</p>
-          <p>Player 3</p>
-          <p>Player 4</p>
+          <p>Player 1{!!player1 && `: ${player1}`}</p>
+          <p>Player 2{!!player2 && `: ${player2}`}</p>
+          <p>Player 3{!!player3 && `: ${player3}`}</p>
+          <p>Player 4{!!player4 && `: ${player4}`}</p>
         </div>
         <div className={inputCol}>
           <p className={notesLabel}>Notes</p>
