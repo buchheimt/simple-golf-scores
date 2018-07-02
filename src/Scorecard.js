@@ -108,7 +108,7 @@ class Scorecard extends Component {
           onChange={e => this.props.handleScoreChange({holeIdx: hole.num - 1, player: 'player4', score: e.target.value})}
           />
         <p className={parRow}>{hole.par}</p>
-        <p className={noteCell} onClick={() => this.props.onNoteClick(hole.num)}></p>
+        <p className={noteCell} onClick={() => this.props.onNoteClick(hole.num)}>{!!hole.note && '...'}</p>
       </div>
     )
   );

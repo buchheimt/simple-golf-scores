@@ -90,6 +90,9 @@ export const noteCell = css`
   height: 36px;
   width: 100%;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 export const scoreCell = css`
@@ -160,6 +163,7 @@ export const noteModal = css`
 export const backsideWrapper = css`
   display: flex;
   flex-grow: 1;
+  position: relative;
 `
 
 export const infoCol = css`
@@ -200,4 +204,12 @@ export const notesLabel = css`
   padding-bottom: 4px;
   margin-bottom: 16px;
   border-bottom: 1px solid #444;
+`
+
+export const backButton = css`
+  padding: 4px;
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  left: 8px;
 `

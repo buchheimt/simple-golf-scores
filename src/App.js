@@ -29,6 +29,17 @@ class App extends Component {
     })
   }
 
+  updateNoteForHole = ({holeIdx, note}) => {
+    this.setState({
+      ...this.state,
+      holes: [
+        ...this.state.holes.slice(0, holeIdx),
+        {...this.state.holes[holeIdx], note},
+        ...this.state.holes.slice(holeIdx + 1)
+      ]
+    })
+  }
+
   render() {
     return (
       <div className={overlay}>
@@ -37,7 +48,7 @@ class App extends Component {
           <div className={scorecardHeader} >
             <h1 className={courseName}>Green Crest GC</h1>
           </div>
-          {this.state.backsideNum ? <Backside hole={this.state.holes.find(hole => hole.num === this.state.backsideNum)} /> : <Scorecard holes={this.state.holes} onNoteClick={this.setNoteModal} handleScoreChange={this.updateHoleForPlayer} />}
+          {this.state.backsideNum ? <Backside hole={this.state.holes.find(hole => hole.num === this.state.backsideNum)} onBack={() => this.setNoteModal(null)} changeNote={this.updateNoteForHole} /> : <Scorecard holes={this.state.holes} onNoteClick={this.setNoteModal} handleScoreChange={this.updateHoleForPlayer} />}
         </div>
       </div>
     );

@@ -1,16 +1,16 @@
 import React, { Component, Fragment } from 'react';
 
-import { noteModal, infoCol, inputCol, backsideWrapper, notes, notesLabel } from './styles';
+import { noteModal, infoCol, inputCol, backsideWrapper, notes, notesLabel, backButton } from './styles';
 
 class Backside extends Component {
 
   render() {
-    const { num, yardage, par, rank, player1, player2, player3, player4 } = this.props.hole;
+    const { num, yardage, par, rank, player1, player2, player3, player4, note } = this.props.hole;
 
     return (
       <div className={backsideWrapper}>
         <div className={infoCol}>
-          {console.log(this.props.hole)}
+          <p className={backButton} onClick={this.props.onBack}>Back</p>
           <p>Hole {num}</p>
           <p>Yardage: {yardage}</p>
           <p>Par: {par}</p>
@@ -21,8 +21,9 @@ class Backside extends Component {
         </div>
         <div className={inputCol}>
           <p className={notesLabel}>Notes</p>
-          <textarea className={notes} />
+          <textarea className={notes} value={note} onChange={e => this.props.changeNote({holeIdx: num - 1, note: e.target.value})} />
         </div>
+        
       </div>
     )
   }
