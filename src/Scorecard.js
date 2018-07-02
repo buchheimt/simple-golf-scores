@@ -72,7 +72,7 @@ class Scorecard extends Component {
   );
 
   renderHoles = holes => 
-    holes.map((hole, holeIdx) => (
+    holes.map(hole => (
       <div 
         className={this.state.selectedHole === hole.num ? highlightedHoleCol : holeColumn}
         onClick={() => this.setState({
@@ -86,43 +86,43 @@ class Scorecard extends Component {
           className={css`${scoreCell}; background-color: ${this.calculateColor(hole.player1, hole.par)}`} 
           maxLength="1"
           value={hole.player1}
-          onChange={e => this.props.handleScoreChange({holeIdx, player: 'player1', score: e.target.value})}
+          onChange={e => this.props.handleScoreChange({holeIdx: hole.num - 1, player: 'player1', score: e.target.value})}
           />
         <input 
           className={css`${scoreCell}; background-color: ${this.calculateColor(hole.player2, hole.par)}`} 
           maxLength="1"
           value={hole.player2}
-          onChange={e => this.props.handleScoreChange({holeIdx, player: 'player2', score: e.target.value})}
+          onChange={e => this.props.handleScoreChange({holeIdx: hole.num - 1, player: 'player2', score: e.target.value})}
           />
         <p className={parRow}>{hole.rank}</p>
         <input 
           className={css`${scoreCell}; background-color: ${this.calculateColor(hole.player3, hole.par)}`} 
           maxLength="1"
           value={hole.player3}
-          onChange={e => this.props.handleScoreChange({holeIdx, player: 'player3', score: e.target.value})}
+          onChange={e => this.props.handleScoreChange({holeIdx: hole.num - 1, player: 'player3', score: e.target.value})}
           />
         <input 
           className={css`${scoreCell}; background-color: ${this.calculateColor(hole.player4, hole.par)}`} 
           maxLength="1"
           value={hole.player4}
-          onChange={e => this.props.handleScoreChange({holeIdx, player: 'player4', score: e.target.value})}
+          onChange={e => this.props.handleScoreChange({holeIdx: hole.num - 1, player: 'player4', score: e.target.value})}
           />
         <p className={parRow}>{hole.par}</p>
         <p className={noteCell} onClick={() => this.props.onNoteClick(hole.num)}></p>
       </div>
     )
   );
-
+  
   renderSummary = holes => (
     <div className={holeColumn}>
       <p className={holeRow}>OUT</p>
       <p className={summaryYardage}>{holes.reduce((sum, hole) => sum + hole.yardage, 0)}</p>
       <p className={parRow}>{holes.reduce((sum, hole) => sum + hole.par, 0)}</p>
-      <p className={summaryCell}></p>
-      <p className={summaryCell}></p>
+      <p className={summaryCell}>{holes.reduce((sum, hole) => hole.player1 ? sum + Number(hole.player1) : sum, 0)}</p>
+      <p className={summaryCell}>{holes.reduce((sum, hole) => hole.player2 ? sum + Number(hole.player2) : sum, 0)}</p>
       <p className={parRow}>{"-"}</p>
-      <p className={summaryCell}></p>
-      <p className={summaryCell}></p>
+      <p className={summaryCell}>{holes.reduce((sum, hole) => hole.player3 ? sum + Number(hole.player3) : sum, 0)}</p>
+      <p className={summaryCell}>{holes.reduce((sum, hole) => hole.player4 ? sum + Number(hole.player4) : sum, 0)}</p>
       <p className={parRow}>{holes.reduce((sum, hole) => sum + hole.par, 0)}</p>
       <p className={summaryCell}>-</p>
     </div>
@@ -133,11 +133,11 @@ class Scorecard extends Component {
       <div className={holeRow}>TOT</div>
       <p className={summaryYardage}>{holes.reduce((sum, hole) => sum + hole.yardage, 0)}</p>
       <p className={parRow}>{holes.reduce((sum, hole) => sum + hole.par, 0)}</p>
-      <p className={summaryCell}></p>
-      <p className={summaryCell}></p>
+      <p className={summaryCell}>{holes.reduce((sum, hole) => hole.player1 ? sum + Number(hole.player1) : sum, 0)}</p>
+      <p className={summaryCell}>{holes.reduce((sum, hole) => hole.player2 ? sum + Number(hole.player1) : sum, 0)}</p>
       <p className={parRow}>{"-"}</p>
-      <p className={summaryCell}></p>
-      <p className={summaryCell}></p>
+      <p className={summaryCell}>{holes.reduce((sum, hole) => hole.player3 ? sum + Number(hole.player1) : sum, 0)}</p>
+      <p className={summaryCell}>{holes.reduce((sum, hole) => hole.player4 ? sum + Number(hole.player1) : sum, 0)}</p>
       <p className={parRow}>{holes.reduce((sum, hole) => sum + hole.par, 0)}</p>
       <p className={summaryCell}>-</p>
     </div>
