@@ -83,7 +83,8 @@ export const highlightedHoleCol = css`
 `
 
 export const yardageRow = css`
-  padding: 4px;
+  padding: 8px 4px 4px;
+  height: 36px;
 `;
 
 export const scoreCell = css`
@@ -93,6 +94,7 @@ export const scoreCell = css`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 36px;
 `
 
 export const summaryCell = css`
@@ -103,6 +105,11 @@ export const summaryCell = css`
   justify-content: center;
   align-items: center;
   background-color: #aab2a5;
+  height: 36px;
+  
+  :last-child {
+    border: none;
+  }
 `
 
 export const summaryYardage = css`
@@ -112,6 +119,7 @@ export const summaryYardage = css`
   justify-content: center;
   align-items: center;
   background-color: #aab2a5;
+  height: 36px;
 `
 
 export const nameInput = css`
@@ -124,6 +132,7 @@ export const nameInput = css`
   align-items: center;
   border: none;
   border-top: 1px solid #444;
+  height: 36px;
 
   :focus {
     background-color: #aab2a5;
@@ -159,5 +168,25 @@ export const inputCol = css`
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-  padding: 24px;
+  padding: 48px;
+  justify-content: center;
+  align-items: center;
+`
+
+export const notes = css`
+  min-height: 200px;
+  width: 100%;
+  background-color: ${COLORS.light};
+  padding: 8px;
+  
+  :focus {
+    background-color: #aab2a5;
+  }
+`
+export const notesLabel = css`
+  width: 100%;
+  text-align: left;
+  padding-bottom: 4px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #444;
 `
