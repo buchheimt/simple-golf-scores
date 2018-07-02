@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
+import { css } from 'emotion';
 
-import { scorecard, scorecardRow, holesContainer, holeColumn, holeRow, parRow, yardageRow, scoreCell, highlightedHoleCol, nameInput, summaryCell, summaryYardage } from './styles';
+import { scorecard, scorecardRow, holesContainer, holeColumn, holeRow, parRow, yardageRow, scoreCell, highlightedHoleCol, nameInput, summaryCell, summaryYardage, noteCell } from './styles';
 
 const rowConfig = [
   {value: 1, label: 'Blue'},
@@ -20,6 +21,21 @@ class Scorecard extends Component {
       player2: '',
       player3: '',
       player4: ''
+    }
+  }
+
+  calculateColor = (score, par) => {
+    switch(true) {
+      case score - par >= 2:
+        return "rgba(238, 90, 0, 0.65)";
+      case score - par === 1:
+        return "rgba(247, 185, 66, 0.65)";
+      case score - par === -1:
+        return "rgba(174, 212, 246, 0.65)";
+      case score - par <= -2:
+        return "rgba(50, 177, 228, 0.65)";
+      default:
+        return "#cad2c5"
     }
   }
 
@@ -64,13 +80,13 @@ class Scorecard extends Component {
         <div className={holeRow}>{hole.num}</div>
         <p className={yardageRow}>{hole.yardage}</p>
         <p className={parRow}>{hole.par}</p>
-        <p className={scoreCell}></p>
-        <p className={scoreCell}></p>
+        <input className={css`${scoreCell}; background-color: ${this.calculateColor(3, 5)}`} maxLength="1" />
+        <input className={css`${scoreCell}; background-color: ${this.calculateColor(6, 5)}`} maxLength="1" />
         <p className={parRow}>{hole.rank}</p>
-        <p className={scoreCell}></p>
-        <p className={scoreCell}></p>
+        <input className={css`${scoreCell}; background-color: ${this.calculateColor(8, 5)}`} maxLength="1" />
+        <input className={css`${scoreCell}; background-color: ${this.calculateColor(4, 5)}`} maxLength="1" />
         <p className={parRow}>{hole.par}</p>
-        <p className={yardageRow} onClick={() => this.props.onNoteClick(hole.num)}></p>
+        <p className={noteCell} onClick={() => this.props.onNoteClick(hole.num)}></p>
       </div>
     )
   );
