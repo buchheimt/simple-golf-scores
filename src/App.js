@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { Parser as Json2csvParser } from 'json2csv';
+import FileSaver from 'file-saver';
 
 import Scorecard from './Scorecard';
 import Backside from './Backside';
 import defaultHoles from './defaultCourse'
 
-import { overlay, scorecard, scorecardHeader, courseName } from './styles';
+import { overlay, scorecard, scorecardHeader, courseName, download } from './styles';
 
 class App extends Component {
   constructor(props) {
@@ -40,6 +42,16 @@ class App extends Component {
     })
   }
 
+  download = () => {
+    const fields = [
+      'num', 'yardage', 'par', 'rank', 'player1', 'player2', 'player3', 'player4', 'note'
+    ];
+    const json2csvParser = new Json2csvParser({ fields });
+    const csv = json2csvParser.parse(this.state.holes);
+    const blob = new Blob([csv], {type: 'text/plain'})
+    FileSaver.saveAs(blob, 'golf-scorez.csv');
+  }
+
   render() {
     return (
       <div className={overlay}>
@@ -47,6 +59,7 @@ class App extends Component {
         <div className={scorecard}>
           <div className={scorecardHeader} >
             <h1 className={courseName}>Green Crest GC</h1>
+            <span className={download} onClick={this.download}>download</span>
           </div>
           {this.state.backsideNum ? <Backside hole={this.state.holes.find(hole => hole.num === this.state.backsideNum)} onBack={() => this.setNoteModal(null)} changeNote={this.updateNoteForHole} /> : <Scorecard holes={this.state.holes} onNoteClick={this.setNoteModal} handleScoreChange={this.updateHoleForPlayer} />}
         </div>

@@ -33,6 +33,7 @@ export const scorecardHeader = css`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   background-color: ${COLORS.light_medium};
   padding: 15px 0;
 `;
@@ -137,7 +138,7 @@ export const summaryYardage = css`
 
 export const nameInput = css`
   border-top: 1px solid #444;
-  padding: 4px 2px;
+  padding: 4px 2px 4px 8px;
   width: 150px;
   background: ${COLORS.light};
   display: flex;
@@ -212,4 +213,10 @@ export const backButton = css`
   position: absolute;
   top: 8px;
   left: 8px;
+`
+
+export const download = css`
+  position: absolute;
+  top: 4px;
+  right: 4px;
 `
