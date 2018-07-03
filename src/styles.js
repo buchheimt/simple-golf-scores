@@ -218,5 +218,11 @@ export const backButton = css`
 export const download = css`
   position: absolute;
   top: 4px;
+  right: 80px;
+`
+
+export const upload = css`
+  position: absolute;
+  top: 24px;
   right: 4px;
 `
