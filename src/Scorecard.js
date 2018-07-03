@@ -134,10 +134,10 @@ class Scorecard extends Component {
       <p className={summaryYardage}>{holes.reduce((sum, hole) => sum + hole.yardage, 0)}</p>
       <p className={parRow}>{holes.reduce((sum, hole) => sum + hole.par, 0)}</p>
       <p className={summaryCell}>{holes.reduce((sum, hole) => hole.player1 ? sum + Number(hole.player1) : sum, 0)}</p>
-      <p className={summaryCell}>{holes.reduce((sum, hole) => hole.player2 ? sum + Number(hole.player1) : sum, 0)}</p>
+      <p className={summaryCell}>{holes.reduce((sum, hole) => hole.player2 ? sum + Number(hole.player2) : sum, 0)}</p>
       <p className={parRow}>{"-"}</p>
-      <p className={summaryCell}>{holes.reduce((sum, hole) => hole.player3 ? sum + Number(hole.player1) : sum, 0)}</p>
-      <p className={summaryCell}>{holes.reduce((sum, hole) => hole.player4 ? sum + Number(hole.player1) : sum, 0)}</p>
+      <p className={summaryCell}>{holes.reduce((sum, hole) => hole.player3 ? sum + Number(hole.player3) : sum, 0)}</p>
+      <p className={summaryCell}>{holes.reduce((sum, hole) => hole.player4 ? sum + Number(hole.player4) : sum, 0)}</p>
       <p className={parRow}>{holes.reduce((sum, hole) => sum + hole.par, 0)}</p>
       <p className={summaryCell}>-</p>
     </div>
