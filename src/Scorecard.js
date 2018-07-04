@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { css } from 'emotion';
 
-import { scorecard, scorecardRow, holesContainer, holeColumn, holeRow, parRow, yardageRow, scoreCell, highlightedHoleCol, nameInput, summaryCell, summaryYardage, noteCell } from './styles';
+import { scorecard, scorecardRow, holesContainer, holeColumn, holeRow, parRow, yardageRow, scoreCell, highlightedHoleCol, nameInput, summaryCell, summaryYardage, noteCell, generateScoreCellStyles } from './styles';
 
 const rowConfig = [
   {value: 1, label: 'Blue'},
@@ -24,31 +24,23 @@ class Scorecard extends Component {
     }
   }
 
-  calculateColor = (score, par) => {
-    if (!score) return "#cad2c5";
-
-    switch(true) {
-      case score - par >= 2:
-        return "rgba(238, 90, 0, 0.65)";
-      case score - par === 1:
-        return "rgba(247, 185, 66, 0.65)";
-      case score - par === -1:
-        return "rgba(174, 212, 246, 0.65)";
-      case score - par <= -2:
-        return "rgba(50, 177, 228, 0.65)";
-      default:
-        return "#cad2c5"
-    }
-  }
+  renderPlayer = (player, hole) => (
+    <input
+      type='text'
+      className={generateScoreCellStyles(hole, player)} 
+      value={hole[player] ? hole[player].toString() : ""}
+      onChange={e => (e.target.value.match(/^[1-9]$/) || !e.target.value.length) && this.props.handleScoreChange({holeIdx: hole.num - 1, player, score: Number(e.target.value)})}
+    />
+  )
 
   renderLabels = () => (
     <div className={holeColumn}>
       <div className={holeRow}>Hole</div>
       <p className={yardageRow}>Yardage</p>
       <p className={parRow}>Par</p>
-      <input className={nameInput} placeholder='Player 1' value={this.state.player1} onChange={(e) => this.setState({
+      {<input className={nameInput} placeholder='Player 1' value={this.state.player1} onChange={(e) => this.setState({
         player1: e.target.value
-      })} />
+      })} />}
       <input className={nameInput} placeholder='Player 2' value={this.state.player2} onChange={(e) => this.setState({
         player2: e.target.value
       })} />
@@ -82,31 +74,11 @@ class Scorecard extends Component {
         <div className={holeRow}>{hole.num}</div>
         <p className={yardageRow}>{hole.yardage}</p>
         <p className={parRow}>{hole.par}</p>
-        <input 
-          className={css`${scoreCell}; background-color: ${this.calculateColor(hole.player1, hole.par)}`} 
-          maxLength="1"
-          value={hole.player1}
-          onChange={e => this.props.handleScoreChange({holeIdx: hole.num - 1, player: 'player1', score: e.target.value})}
-          />
-        <input 
-          className={css`${scoreCell}; background-color: ${this.calculateColor(hole.player2, hole.par)}`} 
-          maxLength="1"
-          value={hole.player2}
-          onChange={e => this.props.handleScoreChange({holeIdx: hole.num - 1, player: 'player2', score: e.target.value})}
-          />
+        {this.renderPlayer('player1', hole)}
+        {this.renderPlayer('player2', hole)}
         <p className={parRow}>{hole.rank}</p>
-        <input 
-          className={css`${scoreCell}; background-color: ${this.calculateColor(hole.player3, hole.par)}`} 
-          maxLength="1"
-          value={hole.player3}
-          onChange={e => this.props.handleScoreChange({holeIdx: hole.num - 1, player: 'player3', score: e.target.value})}
-          />
-        <input 
-          className={css`${scoreCell}; background-color: ${this.calculateColor(hole.player4, hole.par)}`} 
-          maxLength="1"
-          value={hole.player4}
-          onChange={e => this.props.handleScoreChange({holeIdx: hole.num - 1, player: 'player4', score: e.target.value})}
-          />
+        {this.renderPlayer('player3', hole)}
+        {this.renderPlayer('player4', hole)}
         <p className={parRow}>{hole.par}</p>
         <p className={noteCell} onClick={() => this.props.onNoteClick(hole.num)}>{!!hole.note && '...'}</p>
       </div>

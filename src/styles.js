@@ -227,3 +227,25 @@ export const upload = css`
   top: 24px;
   right: 4px;
 `
+
+export const calculateColor = (score, par) => {
+  if (!score) return "#cad2c5";
+
+  switch(true) {
+    case score - par >= 2:
+      return "rgba(238, 90, 0, 0.65)";
+    case score - par === 1:
+      return "rgba(247, 185, 66, 0.65)";
+    case score - par === -1:
+      return "rgba(174, 212, 246, 0.65)";
+    case score - par <= -2:
+      return "rgba(50, 177, 228, 0.65)";
+    default:
+      return "#cad2c5"
+  }
+}
+
+export const generateScoreCellStyles = (hole, player) => css`
+  ${scoreCell};
+  background-color: ${calculateColor(hole[player], hole.par)}
+`
