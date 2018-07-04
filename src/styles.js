@@ -228,6 +228,33 @@ export const upload = css`
   right: 4px;
 `
 
+export const backIconStyles = css`
+  cursor: pointer;
+  position: absolute;
+  left: 16px;
+`
+
+export const downloadIconStyles = css`
+  cursor: pointer;
+  position: absolute;
+  right: 64px;
+`
+
+export const uploadHidden = css`
+  width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+`;
+
+export const uploadIconStyles = css`
+  cursor: pointer;
+  position: absolute;
+  right: 16px;
+`
+
 export const calculateColor = (score, par) => {
   if (!score) return "#cad2c5";
 

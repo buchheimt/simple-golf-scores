@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { css } from 'emotion';
 
 import { scorecard, scorecardRow, holesContainer, holeColumn, holeRow, parRow, yardageRow, scoreCell, highlightedHoleCol, nameInput, summaryCell, summaryYardage, noteCell, generateScoreCellStyles } from './styles';
@@ -128,6 +129,26 @@ class Scorecard extends Component {
       </Fragment>
     )
   }
+}
+
+Scorecard.propTypes = {
+  holes: PropTypes.arrayOf(PropTypes.shape({
+    num: PropTypes.number.isRequired, 
+    yardage: PropTypes.number.isRequired, 
+    par: PropTypes.number.isRequired, 
+    rank: PropTypes.number.isRequired, 
+    player1: PropTypes.number, 
+    player2: PropTypes.number, 
+    player3: PropTypes.number, 
+    player4: PropTypes.number, 
+    note: PropTypes.string.isRequired
+  })),
+  onNoteClick: PropTypes.func.isRequired,
+  handleScoreChange: PropTypes.func.isRequired
+}
+
+Scorecard.defaultProps = {
+  holes: []
 }
 
 export default Scorecard;

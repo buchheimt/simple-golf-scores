@@ -6,8 +6,11 @@ import Csv from 'csvtojson';
 import Scorecard from './Scorecard';
 import Backside from './Backside';
 import defaultCourse from './defaultCourse'
+import backIcon from './assets/images/back.png';
+import downloadIcon from './assets/images/download.png';
+import uploadIcon from './assets/images/upload.png';
 
-import { overlay, scorecard, scorecardHeader, courseName, download, upload } from './styles';
+import { overlay, scorecard, scorecardHeader, courseName, download, upload, backIconStyles, downloadIconStyles, uploadHidden, uploadIconStyles } from './styles';
 
 class App extends Component {
   constructor(props) {
@@ -90,15 +93,30 @@ class App extends Component {
 
   render() {
     return (
-      <div className={overlay}> 
-      {console.log(this.state)}    
+      <div className={overlay}>  
         <div className={scorecard}>
           <div className={scorecardHeader} >
+            {!!this.state.backsideNum && <img src={backIcon} onClick={() => this.setNoteModal(null)} className={backIconStyles} />}
             <h1 className={courseName}>{this.state.courseName}</h1>
-            <span className={download} onClick={this.download}>download</span>
-            <input type="file" className={upload} onChange={this.upload} />
+            <img src={downloadIcon} className={downloadIconStyles} onClick={this.download} />
+            <input type='file' id='file' className={uploadHidden} onChange={this.upload} />
+            <label className={uploadIconStyles} for='file'>
+              <img src={uploadIcon} />
+            </label>
           </div>
-          {this.state.backsideNum ? <Backside hole={this.state.holes.find(hole => hole.num === this.state.backsideNum)} onBack={() => this.setNoteModal(null)} changeNote={this.updateNoteForHole} /> : <Scorecard holes={this.state.holes} onNoteClick={this.setNoteModal} handleScoreChange={this.updateHoleForPlayer} />}
+          {this.state.backsideNum 
+            ? (
+              <Backside
+                hole={this.state.holes.find(hole => hole.num === this.state.backsideNum)}
+                changeNote={this.updateNoteForHole}
+              />
+            ) : (
+              <Scorecard
+                holes={this.state.holes}
+                onNoteClick={this.setNoteModal}
+                handleScoreChange={this.updateHoleForPlayer}
+              />
+            )}
         </div>
       </div>
     );

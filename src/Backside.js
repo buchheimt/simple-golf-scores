@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 import { noteModal, infoCol, inputCol, backsideWrapper, notes, notesLabel, backButton } from './styles';
 
@@ -10,7 +11,6 @@ class Backside extends Component {
     return (
       <div className={backsideWrapper}>
         <div className={infoCol}>
-          <p className={backButton} onClick={this.props.onBack}>Back</p>
           <p>Hole {num}</p>
           <p>Yardage: {yardage}</p>
           <p>Par: {par}</p>
@@ -27,6 +27,20 @@ class Backside extends Component {
       </div>
     )
   }
+}
+
+Backside.propTypes = {
+  hole: PropTypes.shape({
+    num: PropTypes.number.isRequired, 
+    yardage: PropTypes.number.isRequired, 
+    par: PropTypes.number.isRequired, 
+    rank: PropTypes.number.isRequired, 
+    player1: PropTypes.number, 
+    player2: PropTypes.number, 
+    player3: PropTypes.number, 
+    player4: PropTypes.number, 
+    note: PropTypes.string.isRequired
+  })
 }
 
 export default Backside;
