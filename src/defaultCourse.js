@@ -116,4 +116,4 @@ holes.forEach(hole => {
   hole.notes = ""
 })
 
-export default holes;
+export default {holes, courseName: "Green Crest GC"};

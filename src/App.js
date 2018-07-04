@@ -5,7 +5,7 @@ import Csv from 'csvtojson';
 
 import Scorecard from './Scorecard';
 import Backside from './Backside';
-import defaultHoles from './defaultCourse'
+import defaultCourse from './defaultCourse'
 
 import { overlay, scorecard, scorecardHeader, courseName, download, upload } from './styles';
 
@@ -15,7 +15,8 @@ class App extends Component {
 
     this.state = {
       backsideNum: null,
-      holes: defaultHoles
+      holes: defaultCourse.holes,
+      courseName: defaultCourse.courseName
     }
   }
 
@@ -50,11 +51,12 @@ class App extends Component {
     const json2csvParser = new Json2csvParser({ fields });
     const csv = json2csvParser.parse(this.state.holes);
     const blob = new Blob([csv], {type: 'text/plain'})
-    FileSaver.saveAs(blob, 'golf-scorez.csv');
+    FileSaver.saveAs(blob, `${this.state.courseName.split(" ").join("_").toLowerCase()}.csv`);
   }
 
   upload = e => {
     const file = e.target.files[0];
+    // if (file.name.match(/.csv$/)) return false;
     const fileReader = new FileReader();
 
     fileReader.readAsText(file);
@@ -68,6 +70,7 @@ class App extends Component {
         })
         .fromString(csv)
         .then((csvParsed) => this.setState({
+          courseName: console.log(file.name.split(".csv")[0].split(/[-_]/).join(" ")) || file.name.split(".csv")[0].split(/[-_]/).join(" "),
           holes: csvParsed.map(hole => ({
               yardage: Number(hole.yardage), 
               par: Number(hole.par), 
@@ -87,10 +90,11 @@ class App extends Component {
 
   render() {
     return (
-      <div className={overlay}>     
+      <div className={overlay}> 
+      {console.log(this.state)}    
         <div className={scorecard}>
           <div className={scorecardHeader} >
-            <h1 className={courseName}>Green Crest GC</h1>
+            <h1 className={courseName}>{this.state.courseName}</h1>
             <span className={download} onClick={this.download}>download</span>
             <input type="file" className={upload} onChange={this.upload} />
           </div>

@@ -61,6 +61,7 @@ export const parRow = css`
 export const courseName = css`
   font-size: 24px;
   color: white;
+  text-transform: capitalize;
 `;
 
 export const holesContainer = css`
