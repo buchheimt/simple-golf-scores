@@ -98,10 +98,10 @@ class App extends Component {
           <div className={scorecardHeader} >
             {!!this.state.backsideNum && <img src={backIcon} onClick={() => this.setNoteModal(null)} className={backIconStyles} />}
             <h1 className={courseName}>{this.state.courseName}</h1>
-            <img src={downloadIcon} className={downloadIconStyles} onClick={this.download} />
+            <img src={downloadIcon} className={downloadIconStyles} onClick={this.download} title="Download to CSV" />
             <input type='file' id='file' className={uploadHidden} onChange={this.upload} />
             <label className={uploadIconStyles} for='file'>
-              <img src={uploadIcon} />
+              <img src={uploadIcon} title="Upload CSV" />
             </label>
           </div>
           {this.state.backsideNum 
