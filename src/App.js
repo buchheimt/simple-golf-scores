@@ -78,7 +78,7 @@ class App extends Component {
       player2 || 'player2', 
       player3 || 'player3', 
       player4 || 'player4', 
-      'note'
+      'notes'
     ];
     
     const json2csvParser = new Json2csvParser({ fields });
