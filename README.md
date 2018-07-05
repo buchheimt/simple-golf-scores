@@ -6,7 +6,7 @@ A 3-component React application for scoring a round of golf, bootstrapped with `
 
   - Score up to 4 players per round
   - Download completed scorecards to CSV
-  - Upload a CSV with course information and player scores
+  - Upload a CSV with course information and player scores, the name of the file will be used as the course name
   - Add notes for each hole
 
 ## Getting Started

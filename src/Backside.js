@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { infoCol, inputCol, backsideWrapper, notes, notesLabel, backsideInfoLabel, backsidePlayerContainer } from './styles';
+import { 
+  infoCol, 
+  inputCol, 
+  backsideWrapper, 
+  notes, 
+  notesLabel, 
+  backsideInfoLabel, 
+  backsidePlayerContainer 
+} from './styles';
 
+/**
+ * @param {Array} hole object with selected hole info
+ * @param {Object} players object for setting player name values
+ * @param {Function} changeNote called when an individual score is changed
+ */
 class Backside extends Component {
 
   render() {
@@ -39,7 +52,11 @@ class Backside extends Component {
         </div>
         <div className={inputCol}>
           <p className={notesLabel}>Notes</p>
-          <textarea className={notes} value={note} onChange={e => this.props.changeNote({holeIdx: num - 1, note: e.target.value})} />
+          <textarea 
+            className={notes} 
+            value={note} 
+            onChange={e => this.props.changeNote({holeIdx: num - 1, note: e.target.value})}
+          />
         </div>
         
       </div>
@@ -58,6 +75,12 @@ Backside.propTypes = {
     player3: PropTypes.number, 
     player4: PropTypes.number, 
     notes: PropTypes.string.isRequired
+  }),
+  players: PropTypes.shape({
+    player1: PropTypes.string.isRequired,
+    player2: PropTypes.string.isRequired,
+    player3: PropTypes.string.isRequired,
+    player4: PropTypes.string.isRequired,
   })
 }
 

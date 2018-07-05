@@ -115,6 +115,6 @@ holes.forEach(hole => {
   hole.player4 = null
   hole.notes = ""
   return hole;
-})
+});
 
-export default {holes, courseName: "Green Crest GC"};
+export default { holes, courseName: "Green Crest GC" };

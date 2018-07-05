@@ -6,7 +6,7 @@ const COLORS = {
   medium: '#52796f',
   dark_medium: '#354f52',
   dark: '#2f3e46'
-}
+};
 
 export const overlay = css`
   width: 100%;
@@ -16,7 +16,7 @@ export const overlay = css`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
 export const scorecard = css`
   display: inline-block;
@@ -38,7 +38,7 @@ export const scorecardHeader = css`
   padding: 15px 0;
 `;
 
-export const holeRow = css`
+export const holeCell = css`
   background-color: ${COLORS.dark_medium};
   color: white;
   display: flex;
@@ -48,7 +48,7 @@ export const holeRow = css`
   width: 100%;
 `;
 
-export const parRow = css`
+export const parCell = css`
   background-color: ${COLORS.medium};
   display: flex;
   justify-content: center;
@@ -68,11 +68,19 @@ export const holesContainer = css`
   display: flex;
 `;
 
-export const holeColumn = css`
+export const labelCol = css`
   border: 1px solid #444;
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+export const holeCol = css`
+  border: 1px solid #444;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 40px;
 `;
 
 export const highlightedHoleCol = css`
@@ -80,9 +88,10 @@ export const highlightedHoleCol = css`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+  max-width: 40px;
+`;
 
-export const yardageRow = css`
+export const yardageCell = css`
   padding: 8px 4px 4px;
   height: 36px;
 `;
@@ -95,7 +104,7 @@ export const noteCell = css`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
 export const scoreCell = css`
   padding: 4px 2px;
@@ -109,7 +118,7 @@ export const scoreCell = css`
   height: 36px;
   cursor: pointer;
   text-align: center;
-`
+`;
 
 export const summaryCell = css`
   border-top: 1px solid #444;
@@ -124,7 +133,7 @@ export const summaryCell = css`
   :last-child {
     border: none;
   }
-`
+`;
 
 export const summaryYardage = css`
   padding: 4px 2px;
@@ -134,7 +143,7 @@ export const summaryYardage = css`
   align-items: center;
   background-color: #aab2a5;
   height: 36px;
-`
+`;
 
 export const nameInput = css`
   border-top: 1px solid #444;
@@ -152,21 +161,14 @@ export const nameInput = css`
   :focus {
     background-color: #aab2a5;
   }
-`
-
-export const noteModal = css`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(50, 50, 50, .75);
-`
+`;
 
 export const backsideWrapper = css`
   display: flex;
   justify-content: space-around;
   flex-grow: 1;
   position: relative;
-`
+`;
 
 export const infoCol = css`
   display: inline-block;
@@ -181,7 +183,7 @@ export const infoCol = css`
     font-size: 16px;
     align-self: flex-end;
   }
-`
+`;
 
 export const inputCol = css`
   display: inline-block;
@@ -191,7 +193,7 @@ export const inputCol = css`
   padding: 48px;
   justify-content: center;
   align-items: center;
-`
+`;
 
 export const notes = css`
   min-height: 200px;
@@ -202,7 +204,8 @@ export const notes = css`
   :focus {
     background-color: #aab2a5;
   }
-`
+`;
+
 export const notesLabel = css`
   width: 100%;
   text-align: left;
@@ -210,11 +213,7 @@ export const notesLabel = css`
   margin-bottom: 16px;
   border-bottom: 1px solid #444;
   font-size: 20px;
-`
-
-export const parLabel = css`
-  
-`
+`;
 
 export const backsideInfoLabel = css`
   display: flex;
@@ -227,7 +226,7 @@ export const backsideInfoLabel = css`
   p {
     font-size: 20px;
   }
-`
+`;
 
 export const backsidePlayerContainer = css`
   display: flex;
@@ -241,12 +240,8 @@ export const backsidePlayerContainer = css`
     padding: 8px 0;
     display: flex;
     justify-content: space-between;
-
-    span {
-      text-transform: capitalize;
-    }
   }
-`
+`;
 
 export const backButton = css`
   padding: 4px;
@@ -254,31 +249,31 @@ export const backButton = css`
   position: absolute;
   top: 8px;
   left: 8px;
-`
+`;
 
 export const download = css`
   position: absolute;
   top: 4px;
   right: 80px;
-`
+`;
 
 export const upload = css`
   position: absolute;
   top: 24px;
   right: 4px;
-`
+`;
 
 export const backIconStyles = css`
   cursor: pointer;
   position: absolute;
   left: 16px;
-`
+`;
 
 export const downloadIconStyles = css`
   cursor: pointer;
   position: absolute;
   right: 64px;
-`
+`;
 
 export const uploadHidden = css`
   width: 0.1px;
@@ -293,7 +288,7 @@ export const uploadIconStyles = css`
   cursor: pointer;
   position: absolute;
   right: 16px;
-`
+`;
 
 export const calculateColor = (score, par) => {
   if (!score) return "#cad2c5";
@@ -315,4 +310,4 @@ export const calculateColor = (score, par) => {
 export const generateScoreCellStyles = (hole, player) => css`
   ${scoreCell};
   background-color: ${calculateColor(hole[player], hole.par)}
-`
+`;
