@@ -50,11 +50,11 @@ class App extends Component {
       ]
     }));
 
-  updateNoteForHole = ({ holeIdx, note }) =>
+  updateNoteForHole = ({ holeIdx, notes }) =>
     this.setState(prev => ({
       holes: [
         ...prev.holes.slice(0, holeIdx),
-        { ...prev.holes[holeIdx], note },
+        { ...prev.holes[holeIdx], notes },
         ...prev.holes.slice(holeIdx + 1)
       ]
     }));
@@ -68,7 +68,6 @@ class App extends Component {
     }));
 
   download = () => {
-    const { player1, player2, player3, player4 } = this.state.players;
     const fields = [
       'num', 
       'yardage', 
@@ -136,7 +135,7 @@ class App extends Component {
               player2: hole.player2.match(/^[1-9]$/) ? Number(hole.player2) : null,
               player3: hole.player3.match(/^[1-9]$/) ? Number(hole.player3) : null,
               player4: hole.player4.match(/^[1-9]$/) ? Number(hole.player4) : null,
-              note: hole.note
+              notes: hole.notes
             })
           )
         });

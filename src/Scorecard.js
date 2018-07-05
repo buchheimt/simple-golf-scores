@@ -88,7 +88,7 @@ class Scorecard extends Component {
         {this.renderPlayer('player3', hole)}
         {this.renderPlayer('player4', hole)}
         <p className={parCell}>{hole.par}</p>
-        <p className={noteCell} onClick={() => this.props.onNoteClick(hole.num)}>{!!hole.note && '...'}</p>
+        <p className={noteCell} onClick={() => this.props.onNoteClick(hole.num)}>{!!hole.notes && '...'}</p>
       </div>
     )
   );

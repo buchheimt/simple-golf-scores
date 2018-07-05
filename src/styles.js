@@ -23,8 +23,8 @@ export const scorecard = css`
   margin: 0 auto;
   box-shadow: 1px 3px 3px 3px #222;
   background-color: ${COLORS.light};
-  min-width: 942.5px;
-  min-height: 367px;
+  min-width: 992px;
+  min-height: 416px;
   display: flex;
   flex-direction: column;
 `;
@@ -195,15 +195,11 @@ export const inputCol = css`
   align-items: center;
 `;
 
-export const notes = css`
+export const notesStyles = css`
   min-height: 200px;
   width: 100%;
   background-color: ${COLORS.light};
   padding: 8px;
-  
-  :focus {
-    background-color: #aab2a5;
-  }
 `;
 
 export const notesLabel = css`

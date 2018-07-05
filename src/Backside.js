@@ -5,7 +5,7 @@ import {
   infoCol, 
   inputCol, 
   backsideWrapper, 
-  notes, 
+  notesStyles, 
   notesLabel, 
   backsideInfoLabel, 
   backsidePlayerContainer 
@@ -19,7 +19,7 @@ import {
 class Backside extends Component {
 
   render() {
-    const { num, yardage, par, player1Score, player2Score, player3Score, player4Score, note } = this.props.hole;
+    const { num, yardage, par, player1Score, player2Score, player3Score, player4Score, notes } = this.props.hole;
     const { player1, player2, player3, player4 } = this.props.players;
 
     return (
@@ -53,9 +53,9 @@ class Backside extends Component {
         <div className={inputCol}>
           <p className={notesLabel}>Notes</p>
           <textarea 
-            className={notes} 
-            value={note} 
-            onChange={e => this.props.changeNote({holeIdx: num - 1, note: e.target.value})}
+            className={notesStyles} 
+            value={notes} 
+            onChange={e => this.props.changeNote({holeIdx: num - 1, notes: e.target.value})}
           />
         </div>
         
