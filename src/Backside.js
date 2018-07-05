@@ -1,37 +1,38 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { noteModal, infoCol, inputCol, backsideWrapper, notes, notesLabel, backButton, backsideInfoLabel, backsidePlayerContainer } from './styles';
+import { infoCol, inputCol, backsideWrapper, notes, notesLabel, backsideInfoLabel, backsidePlayerContainer } from './styles';
 
 class Backside extends Component {
 
   render() {
-    const { num, yardage, par, rank, player1, player2, player3, player4, note } = this.props.hole;
+    const { num, yardage, par, player1Score, player2Score, player3Score, player4Score, note } = this.props.hole;
+    const { player1, player2, player3, player4 } = this.props.players;
 
     return (
       <div className={backsideWrapper}>
         <div className={infoCol}>
           <div className={backsideInfoLabel}>
             <p>Hole {num}</p>
-            <p>Par: {par}</p>
+            <p>Par {par}</p>
           </div>
           <p>{yardage} yards</p>
           <div className={backsidePlayerContainer}>
             <div>
-              <span>Player 1:</span>
-              <span> {!!player1 ? player1 : '-'}</span>
+              <span>{player1 || 'Player 1'}:</span>
+              <span> {!!player1Score ? player1Score : '-'}</span>
             </div>
             <div>
-              <span>Player 2:</span>
-              <span> {!!player2 ? player2 : '-'}</span>
+              <span>{player2 || 'Player 2'}:</span>
+              <span> {!!player2Score ? player2Score : '-'}</span>
             </div>
             <div>
-              <span>Player 3:</span>
-              <span> {!!player3 ? player3 : '-'}</span>
+              <span>{player3 || 'Player 3'}:</span>
+              <span> {!!player3Score ? player3Score : '-'}</span>
             </div>
             <div>
-              <span>Player 4:</span>
-              <span> {!!player4 ? player4 : '-'}</span>
+              <span>{player4 || 'Player 4'}:</span>
+              <span> {!!player4Score ? player4Score : '-'}</span>
             </div>
           </div>
           
@@ -56,7 +57,7 @@ Backside.propTypes = {
     player2: PropTypes.number, 
     player3: PropTypes.number, 
     player4: PropTypes.number, 
-    note: PropTypes.string.isRequired
+    notes: PropTypes.string.isRequired
   })
 }
 

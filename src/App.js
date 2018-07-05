@@ -10,7 +10,7 @@ import backIcon from './assets/images/back.png';
 import downloadIcon from './assets/images/download.png';
 import uploadIcon from './assets/images/upload.png';
 
-import { overlay, scorecard, scorecardHeader, courseName, download, upload, backIconStyles, downloadIconStyles, uploadHidden, uploadIconStyles } from './styles';
+import { overlay, scorecard, scorecardHeader, courseName, backIconStyles, downloadIconStyles, uploadHidden, uploadIconStyles } from './styles';
 
 class App extends Component {
   constructor(props) {
@@ -33,7 +33,6 @@ class App extends Component {
 
   updateHoleForPlayer = ({holeIdx, player, score}) =>
     this.setState((prev) => ({
-      ...prev,
       holes: [
         ...prev.holes.slice(0, holeIdx),
         {...prev.holes[holeIdx], [player]: score},
@@ -43,7 +42,6 @@ class App extends Component {
 
   updateNoteForHole = ({holeIdx, note}) =>
     this.setState((prev) => ({
-      ...prev,
       holes: [
         ...prev.holes.slice(0, holeIdx),
         {...prev.holes[holeIdx], note},
@@ -80,7 +78,6 @@ class App extends Component {
 
   upload = e => {
     const file = e.target.files[0];
-    // if (file.name.match(/.csv$/)) return false;
     const fileReader = new FileReader();
 
     fileReader.readAsText(file);
@@ -94,7 +91,7 @@ class App extends Component {
         })
         .fromString(csv)
         .then((csvParsed) => this.setState({
-          courseName: console.log(file.name.split(".csv")[0].split(/[-_]/).join(" ")) || file.name.split(".csv")[0].split(/[-_]/).join(" "),
+          courseName: file.name.split(".csv")[0].split(/[-_]/).join(" "),
           holes: csvParsed.map(hole => ({
               yardage: Number(hole.yardage), 
               par: Number(hole.par), 
@@ -115,14 +112,15 @@ class App extends Component {
   render() {
     return (
       <div className={overlay}>  
+      {console.log(this.state)}
         <div className={scorecard}>
           <div className={scorecardHeader} >
-            {!!this.state.backsideNum && <img src={backIcon} onClick={() => this.setNoteModal(null)} className={backIconStyles} />}
+            {!!this.state.backsideNum && <img src={backIcon} onClick={() => this.setNoteModal(null)} className={backIconStyles} alt='Back Icon' />}
             <h1 className={courseName}>{this.state.courseName}</h1>
-            <img src={downloadIcon} className={downloadIconStyles} onClick={this.download} title="Download to CSV" />
+            <img src={downloadIcon} className={downloadIconStyles} onClick={this.download} title="Download to CSV" alt='Download Icon' />
             <input type='file' id='file' className={uploadHidden} onChange={this.upload} />
-            <label className={uploadIconStyles} for='file'>
-              <img src={uploadIcon} title="Upload CSV" />
+            <label className={uploadIconStyles} htmlFor='file'>
+              <img src={uploadIcon} title="Upload CSV" alt='Upload Icon' />
             </label>
           </div>
           {this.state.backsideNum 
@@ -130,6 +128,7 @@ class App extends Component {
               <Backside
                 hole={this.state.holes.find(hole => hole.num === this.state.backsideNum)}
                 changeNote={this.updateNoteForHole}
+                players={this.state.players}
               />
             ) : (
               <Scorecard

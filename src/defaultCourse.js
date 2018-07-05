@@ -109,11 +109,12 @@ const holes = [
 ];
 
 holes.forEach(hole => {
-  hole.player1 = null,
-  hole.player2 = null,
-  hole.player3 = null,
-  hole.player4 = null,
+  hole.player1 = null
+  hole.player2 = null
+  hole.player3 = null
+  hole.player4 = null
   hole.notes = ""
+  return hole;
 })
 
 export default {holes, courseName: "Green Crest GC"};

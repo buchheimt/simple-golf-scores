@@ -1,16 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { css } from 'emotion';
 
-import { scorecard, scorecardRow, holesContainer, holeColumn, holeRow, parRow, yardageRow, scoreCell, highlightedHoleCol, nameInput, summaryCell, summaryYardage, noteCell, generateScoreCellStyles } from './styles';
-
-const rowConfig = [
-  {value: 1, label: 'Blue'},
-  {value: 2, label: 'White'},
-  {value: 3, label: 'Red'},
-  {value: 4, label: 'Par'},
-  {value: 5, label: 'Rank'}
-];
+import { holesContainer, holeColumn, holeRow, parRow, yardageRow, highlightedHoleCol, nameInput, summaryCell, summaryYardage, noteCell, generateScoreCellStyles } from './styles';
 
 class Scorecard extends Component {
   constructor(props) {
@@ -58,7 +49,8 @@ class Scorecard extends Component {
 
   renderHoles = holes => 
     holes.map(hole => (
-      <div 
+      <div
+        key={hole.num}
         className={this.state.selectedHole === hole.num ? highlightedHoleCol : holeColumn}
         onClick={() => this.setState({
           selectedHole: hole.num
@@ -67,11 +59,11 @@ class Scorecard extends Component {
         <div className={holeRow}>{hole.num}</div>
         <p className={yardageRow}>{hole.yardage}</p>
         <p className={parRow}>{hole.par}</p>
-        {this.renderPlayer(0, hole)}
-        {this.renderPlayer(1, hole)}
+        {this.renderPlayer('player1', hole)}
+        {this.renderPlayer('player2', hole)}
         <p className={parRow}>{hole.rank}</p>
-        {this.renderPlayer(2, hole)}
-        {this.renderPlayer(3, hole)}
+        {this.renderPlayer('player3', hole)}
+        {this.renderPlayer('player4', hole)}
         <p className={parRow}>{hole.par}</p>
         <p className={noteCell} onClick={() => this.props.onNoteClick(hole.num)}>{!!hole.note && '...'}</p>
       </div>
@@ -111,7 +103,6 @@ class Scorecard extends Component {
   render() {
     return (
       <Fragment>
-        {console.log(this.state)}
         <div className={holesContainer} >
           {this.renderLabels()}
           {this.renderNine(this.props.holes.slice(0, 9))}
@@ -132,8 +123,7 @@ Scorecard.propTypes = {
     player1: PropTypes.number, 
     player2: PropTypes.number, 
     player3: PropTypes.number, 
-    player4: PropTypes.number, 
-    note: PropTypes.string.isRequired
+    player4: PropTypes.number
   })),
   onNoteClick: PropTypes.func.isRequired,
   handleScoreChange: PropTypes.func.isRequired
