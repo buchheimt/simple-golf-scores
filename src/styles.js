@@ -189,6 +189,7 @@ export const inputCol = css`
   display: inline-block;
   width: 50%;
   display: flex;
+  position: relative;
   flex-direction: column;
   padding: 48px;
   justify-content: center;
@@ -200,6 +201,7 @@ export const notesStyles = css`
   width: 100%;
   background-color: ${COLORS.light};
   padding: 8px;
+  position: absolute;
 `;
 
 export const notesLabel = css`
