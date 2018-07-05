@@ -11,7 +11,7 @@ A 3-component React application for scoring a round of golf, bootstrapped with `
 
 ## Getting Started
 
-Setup is easy, to run the app locally all that is required is running `yarn` followed by `yarn start`. It's as easy as that!
+Setup is easy, to run the app locally just run `yarn` followed by `yarn start`. It's as easy as that!
 
 ## Deployment
 

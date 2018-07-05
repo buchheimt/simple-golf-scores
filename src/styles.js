@@ -98,7 +98,6 @@ export const noteCell = css`
 `
 
 export const scoreCell = css`
-  border-top: 1px solid #444;
   padding: 4px 2px;
   width: 100%;
   background: ${COLORS.light};
@@ -164,6 +163,7 @@ export const noteModal = css`
 
 export const backsideWrapper = css`
   display: flex;
+  justify-content: space-around;
   flex-grow: 1;
   position: relative;
 `
@@ -172,18 +172,21 @@ export const infoCol = css`
   display: inline-block;
   width: 40%;
   display: flex;
-  flex-grow: 1;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  padding: 24px;
+  padding: 48px;
+
+  p {
+    font-size: 16px;
+    align-self: flex-end;
+  }
 `
 
 export const inputCol = css`
   display: inline-block;
-  width: 40%;
+  width: 50%;
   display: flex;
-  flex-grow: 1;
   flex-direction: column;
   padding: 48px;
   justify-content: center;
@@ -206,6 +209,39 @@ export const notesLabel = css`
   padding-bottom: 4px;
   margin-bottom: 16px;
   border-bottom: 1px solid #444;
+  font-size: 20px;
+`
+
+export const parLabel = css`
+  
+`
+
+export const backsideInfoLabel = css`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid #444;
+  margin: 0 0 4px;
+  padding-bottom: 4px;
+
+  p {
+    font-size: 20px;
+  }
+`
+
+export const backsidePlayerContainer = css`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-top: 48px;
+  width: 100%;
+
+  div {
+    width: 100%;
+    padding: 8px 0;
+    display: flex;
+    justify-content: space-between;
+  }
 `
 
 export const backButton = css`
