@@ -19,37 +19,58 @@ class App extends Component {
     this.state = {
       backsideNum: null,
       holes: defaultCourse.holes,
-      courseName: defaultCourse.courseName
+      courseName: defaultCourse.courseName,
+      players: {
+        player1: '',
+        player2: '',
+        player3: '',
+        player4: ''
+      }
     }
   }
 
   setNoteModal = backsideNum => this.setState({ backsideNum });
 
-  updateHoleForPlayer = ({holeIdx, player, score}) => {
-    this.setState({
-      ...this.state,
+  updateHoleForPlayer = ({holeIdx, player, score}) =>
+    this.setState((prev) => ({
+      ...prev,
       holes: [
-        ...this.state.holes.slice(0, holeIdx),
-        {...this.state.holes[holeIdx], [player]: score},
-        ...this.state.holes.slice(holeIdx + 1)
+        ...prev.holes.slice(0, holeIdx),
+        {...prev.holes[holeIdx], [player]: score},
+        ...prev.holes.slice(holeIdx + 1)
       ]
-    })
-  }
+    }));
 
-  updateNoteForHole = ({holeIdx, note}) => {
-    this.setState({
-      ...this.state,
+  updateNoteForHole = ({holeIdx, note}) =>
+    this.setState((prev) => ({
+      ...prev,
       holes: [
-        ...this.state.holes.slice(0, holeIdx),
-        {...this.state.holes[holeIdx], note},
-        ...this.state.holes.slice(holeIdx + 1)
+        ...prev.holes.slice(0, holeIdx),
+        {...prev.holes[holeIdx], note},
+        ...prev.holes.slice(holeIdx + 1)
       ]
-    })
-  }
+    }));
+
+  changePlayer = (playerKey, value) =>
+    this.setState((prev) => ({
+      players: {
+        ...prev.players,
+        [playerKey]: value
+      }
+    }));
 
   download = () => {
+    const { player1, player2, player3, player4 } = this.state.players;
     const fields = [
-      'num', 'yardage', 'par', 'rank', 'player1', 'player2', 'player3', 'player4', 'note'
+      'num', 
+      'yardage', 
+      'par', 
+      'rank', 
+      player1 || 'player1', 
+      player2 || 'player2', 
+      player3 || 'player3', 
+      player4 || 'player4', 
+      'note'
     ];
     const json2csvParser = new Json2csvParser({ fields });
     const csv = json2csvParser.parse(this.state.holes);
@@ -115,6 +136,8 @@ class App extends Component {
                 holes={this.state.holes}
                 onNoteClick={this.setNoteModal}
                 handleScoreChange={this.updateHoleForPlayer}
+                players={this.state.players}
+                changePlayer={this.changePlayer}
               />
             )}
         </div>

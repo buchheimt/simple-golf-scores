@@ -17,11 +17,7 @@ class Scorecard extends Component {
     super(props);
 
     this.state = {
-      selectedHole: 1,
-      player1: '',
-      player2: '',
-      player3: '',
-      player4: ''
+      selectedHole: 1
     }
   }
 
@@ -39,19 +35,15 @@ class Scorecard extends Component {
       <div className={holeRow}>Hole</div>
       <p className={yardageRow}>Yardage</p>
       <p className={parRow}>Par</p>
-      {<input className={nameInput} placeholder='Player 1' value={this.state.player1} onChange={(e) => this.setState({
-        player1: e.target.value
-      })} />}
-      <input className={nameInput} placeholder='Player 2' value={this.state.player2} onChange={(e) => this.setState({
-        player2: e.target.value
-      })} />
+      {<input className={nameInput} placeholder='Player 1' value={this.props.players.player1} onChange={(e) => this.props.changePlayer('player1', e.target.value
+      )} />}
+      <input className={nameInput} placeholder='Player 2' value={this.props.players.player2} onChange={(e) => this.props.changePlayer('player2', e.target.value
+      )} />
       <p className={parRow}>Rank</p>
-      <input className={nameInput} placeholder='Player 3' value={this.state.player3} onChange={(e) => this.setState({
-        player3: e.target.value
-      })} />
-      <input className={nameInput} placeholder='Player 4' value={this.state.player4} onChange={(e) => this.setState({
-        player4: e.target.value
-      })} />
+      <input className={nameInput} placeholder='Player 3' value={this.props.players.player3} onChange={(e) => this.props.changePlayer('player3', e.target.value
+      )} />
+      <input className={nameInput} placeholder='Player 4' value={this.props.players.player4} onChange={(e) => this.props.changePlayer('player4', e.target.value
+      )} />
       <p className={parRow}>Par</p>
       <p className={yardageRow}>Notes</p>
     </div>
@@ -75,11 +67,11 @@ class Scorecard extends Component {
         <div className={holeRow}>{hole.num}</div>
         <p className={yardageRow}>{hole.yardage}</p>
         <p className={parRow}>{hole.par}</p>
-        {this.renderPlayer('player1', hole)}
-        {this.renderPlayer('player2', hole)}
+        {this.renderPlayer(0, hole)}
+        {this.renderPlayer(1, hole)}
         <p className={parRow}>{hole.rank}</p>
-        {this.renderPlayer('player3', hole)}
-        {this.renderPlayer('player4', hole)}
+        {this.renderPlayer(2, hole)}
+        {this.renderPlayer(3, hole)}
         <p className={parRow}>{hole.par}</p>
         <p className={noteCell} onClick={() => this.props.onNoteClick(hole.num)}>{!!hole.note && '...'}</p>
       </div>
