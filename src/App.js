@@ -89,6 +89,11 @@ class App extends Component {
 
   upload = e => {
     const file = e.target.files[0];
+    if (!file.name.match(/.csv/)) {
+      alert('Invalid file type');
+      return;
+    }
+
     const fileReader = new FileReader();
     const defaultHeaders = [
       'num', 'yardage', 'par', 'rank', 'player1', 'player2', 'player3', 'player4', 'notes'
@@ -122,15 +127,15 @@ class App extends Component {
 
           this.setState({
           courseName: file.name.split(".csv")[0].split(/[-_]/).join(" "),
-          holes: csvParsed.map(hole => ({
-              yardage: Number(hole.yardage), 
-              par: Number(hole.par), 
-              rank: Number(hole.rank),
-              num: Number(hole.num),
-              player1: hole.player1 ? Number(hole.player1) : null,
-              player2: hole.player2 ? Number(hole.player2) : null,
-              player3: hole.player3 ? Number(hole.player3) : null,
-              player4: hole.player4 ? Number(hole.player4) : null,
+          holes: csvParsed.map((hole, i) => ({
+              yardage: hole.yardage.match(/^[1-9][0-9][0-9]?$/) ? Number(hole.yardage) : 0, 
+              par: hole.par.match(/^[2-6]$/) ? Number(hole.par) : 0, 
+              rank: hole.rank.match(/^[1-9][0-8]?$/) && Number(hole.rank) <= 18 ? Number(hole.rank) : '-',
+              num: i + 1,
+              player1: hole.player1.match(/^[1-9]$/) ? Number(hole.player1) : null,
+              player2: hole.player2.match(/^[1-9]$/) ? Number(hole.player2) : null,
+              player3: hole.player3.match(/^[1-9]$/) ? Number(hole.player3) : null,
+              player4: hole.player4.match(/^[1-9]$/) ? Number(hole.player4) : null,
               note: hole.note
             })
           )

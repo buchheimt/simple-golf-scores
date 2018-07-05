@@ -9,6 +9,8 @@ A 3-component React application for scoring a round of golf, bootstrapped with `
   - Upload a CSV with course information and player scores, the name of the file will be used as the course name
   - Add notes for each hole
 
+To utilize the upload feature simply download the default course template
+
 ## Getting Started
 
 Setup is easy, to run the app locally just run `yarn` followed by `yarn start`. It's as easy as that!
