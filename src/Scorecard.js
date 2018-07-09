@@ -49,15 +49,31 @@ class Scorecard extends Component {
       <div className={holeCell}>Hole</div>
       <p className={yardageCell}>Yardage</p>
       <p className={parCell}>Par</p>
-      {<input className={nameInput} placeholder='Player 1' value={this.props.players.player1} onChange={(e) => this.props.changePlayer('player1', e.target.value
-      )} />}
-      <input className={nameInput} placeholder='Player 2' value={this.props.players.player2} onChange={(e) => this.props.changePlayer('player2', e.target.value
-      )} />
+      <input
+        className={nameInput}
+        placeholder='Player 1'
+        value={this.props.players.player1}
+        onChange={(e) => this.props.changePlayer('player1', e.target.value)}
+      />
+      <input
+        className={nameInput}
+        placeholder='Player 2'
+        value={this.props.players.player2}
+        onChange={(e) => this.props.changePlayer('player2', e.target.value)}
+      />
       <p className={parCell}>Rank</p>
-      <input className={nameInput} placeholder='Player 3' value={this.props.players.player3} onChange={(e) => this.props.changePlayer('player3', e.target.value
-      )} />
-      <input className={nameInput} placeholder='Player 4' value={this.props.players.player4} onChange={(e) => this.props.changePlayer('player4', e.target.value
-      )} />
+      <input
+        className={nameInput}
+        placeholder='Player 3'
+        value={this.props.players.player3}
+        onChange={(e) => this.props.changePlayer('player3', e.target.value)}
+      />
+      <input
+        className={nameInput}
+        placeholder='Player 4'
+        value={this.props.players.player4}
+        onChange={(e) => this.props.changePlayer('player4', e.target.value)}
+      />
       <p className={parCell}>Par</p>
       <p className={yardageCell}>Notes</p>
     </div>
@@ -88,7 +104,9 @@ class Scorecard extends Component {
         {this.renderPlayer('player3', hole)}
         {this.renderPlayer('player4', hole)}
         <p className={parCell}>{hole.par}</p>
-        <p className={noteCell} onClick={() => this.props.onNoteClick(hole.num)}>{!!hole.notes && '...'}</p>
+        <p className={noteCell} onClick={() => this.props.onNoteClick(hole.num)}>
+          {!!hole.notes && '...'}
+        </p>
       </div>
     )
   );

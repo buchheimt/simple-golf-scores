@@ -19,9 +19,17 @@ import {
 class Backside extends Component {
 
   render() {
-    const { num, yardage, par, player1: player1Score, player2: player2Score, player3: player3Score, player4: player4Score, notes } = this.props.hole;
+    const {
+      num,
+      yardage,
+      par,
+      player1: player1Score,
+      player2: player2Score,
+      player3: player3Score,
+      player4: player4Score,
+      notes 
+    } = this.props.hole;
     const { player1, player2, player3, player4 } = this.props.players;
-    console.log(this.props);
 
     return (
       <div className={backsideWrapper}>

@@ -105,9 +105,7 @@ class App extends Component {
       Csv()
         .on('header', header => {
           if (
-            header.some((field, i) => console.log(field, defaultHeaders[i]) ||
-            field !== defaultHeaders[i]) ||
-            header.length !== defaultHeaders.length
+            header.some((field, i) => field !== defaultHeaders[i]) || header.length !== defaultHeaders.length
           ) {
             validHeaders = false;
           }
